@@ -1,0 +1,27 @@
+
+.customSelectOrangeBorder .ant-select-selector {
+    border: 1px solid #FF8400 !important; /* Viền cam cho Select input */
+    border-radius: 6px !important; /* Bo góc nếu cần */
+    box-shadow: none !important; /* Bỏ shadow mặc định */
+}
+
+/* Style when the select is focused */
+.customSelectOrangeBorder.ant-select-focused .ant-select-selector {
+    box-shadow: 0 0 0 2px rgba(255, 132, 0, 0.2) !important; /* Shadow màu cam khi focus */
+}
+
+/* Style when the select is active/open */
+.customSelectOrangeBorder.ant-select-open .ant-select-selector {
+    border-color: #FF8400 !important;
+    box-shadow: 0 0 0 2px rgba(255, 132, 0, 0.2) !important;
+}
+
+/* If you want to customize the placeholder text color */
+.customSelectOrangeBorder .ant-select-selection-placeholder {
+    color: #888; /* Or any other color */
+}
+
+/* Optional: Adjust dropdown options text if needed */
+.ant-select-item-option-content {
+    /* Example: font-weight: 500; */
+}

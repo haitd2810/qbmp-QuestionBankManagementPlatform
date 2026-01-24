@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  --success-color: #34A853;
+  --primary-color: #3468a8;
+
+  --vivid-orange: #FF8400;
+
+  --off-white: #f1f1f1;
+
 }
 
 @theme inline {
@@ -14,13 +22,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #171717;
+    --foreground: #ffffff;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--foreground);
+  color: var(--foreground );
   font-family: Arial, Helvetica, sans-serif;
 }
