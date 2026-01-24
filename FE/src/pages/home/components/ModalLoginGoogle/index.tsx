@@ -56,7 +56,7 @@ export default function ModalLoginGoole(props : Props) {
             {/* Google Button Container */}
             <div className="flex justify-center">
               <button
-                className={`rounded-lg flex items-center justify-center w-full max-w-[320px] pr-4 py-3 border-2 border-[#FF7F00] transition-all hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed`}
+                className={`rounded-lg hover:cursor-pointer flex items-center justify-center w-full max-w-[320px] pr-4 py-3 border-2 border-[#FF7F00] transition-all hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed`}
                 // onClick={handleGoogleLoginClick}
               >
                 <Image
