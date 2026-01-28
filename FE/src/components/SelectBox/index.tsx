@@ -35,7 +35,7 @@ const MySelect = ({
     hasIcon = false,
     variant = "borderless",
     popupMinWidth = '180px',
-    border = 'var(--vivid-orange)',
+    border = 'var(--color-orange-main',
     zIndex= '9999',
 } : Props) => {
     return (

@@ -4,13 +4,7 @@ import  SQBMSLogo from "@/assets/logo.png";
 import GoogleLogo from "@/assets/GoogleLogo.png"
 import styles from "../LandingPage.module.css"
 
-export type Props = {
-  handleBackdropClick: void,
-  handleCloseLoginModal: void,
-  handleGoogleLoginClick: void,
-
-}
-export default function ModalLoginGoole(props : Props) {
+export default function ModalLoginGoole() {
   const {handleBackdropClick, handleCloseLoginModal} = useLoginAction();
   return (
     <div
@@ -26,7 +20,7 @@ export default function ModalLoginGoole(props : Props) {
           <div className="rounded-md relative flex-auto p-12 text-center">
             <button
               type="button"
-              className="absolute top-0 right-0 m-4 text-gray-400 bg-transparent hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center"
+              className="hover:cursor-pointer absolute top-0 right-0 m-4 text-gray-400 bg-transparent hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center"
               aria-label="Close"
               onClick={handleCloseLoginModal}
             >

@@ -7,7 +7,7 @@
 }
 
 .text-org{
-  color: var(--vivid-orange);
+  color: var(--color-orange-main);
 }
 
 .text-white-hover:hover{
@@ -28,7 +28,7 @@
 }
 
 .bg-org{
-  background-color: var(--vivid-orange);;
+  background-color: var(--color-orange-main);;
 }
 
 .bg-blue{
@@ -58,27 +58,27 @@
 }
 
 .title-idea{
-  color: var(--vivid-orange);;
+  color: var(--color-orange-main);;
 }
 
 .text-continue-google {
-  color: var(--vivid-orange);;
+  color: var(--color-orange-main);;
 }
 
 .btn-verify-email{
   background-color: var(--background); ;
-  border-color: var(--vivid-orange);;
+  border-color: var(--color-orange-main);;
 }
 
 .btn-verify-email:hover{
-  background-color: var(--vivid-orange);;
+  background-color: var(--color-orange-main);;
   border-color: var(--background);;
   color: var(--background);;
 }
 
 
 .btn-login-google:hover{
-  background-color: var(--vivid-orange);;
+  background-color: var(--color-orange-main);;
   border-color: var(--background);;
 }
 .btn-login-google:hover .text-continue-google{
