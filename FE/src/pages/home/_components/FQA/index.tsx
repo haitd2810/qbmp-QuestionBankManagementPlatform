@@ -34,10 +34,10 @@ function FQA() {
     },
   ];
 
-  const [openQuestionId, setOpenQuestionId] = useState(null);
-  const contentRefs = useRef({});
+  const [openQuestionId, setOpenQuestionId] = useState<number | null>(null);
+  const contentRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
-  const handleToggle = (id) => {
+  const handleToggle = (id: number) => {
     setOpenQuestionId(openQuestionId === id ? null : id);
   };
 
@@ -86,7 +86,9 @@ function FQA() {
                   </div>
 
                   <div
-                    ref={(el) => (contentRefs.current[item.id] = el)}
+                    ref={(el: HTMLDivElement | null) => {
+                      contentRefs.current[item.id] = el;
+                    }}
                     className="text-left transition-all duration-300 ease-in-out"
                   >
                     <p className="p-6 m-0 text-gray-700">{item.answer}</p>
