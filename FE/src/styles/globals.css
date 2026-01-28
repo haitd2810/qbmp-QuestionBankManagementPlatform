@@ -7,9 +7,13 @@
   --success-color: #34A853;
   --primary-color: #3468a8;
 
-  --vivid-orange: #FF8400;
+  --color-orange-main: #FF8400;
+  --color-orange-light: #ff923f;
 
   --off-white: #f1f1f1;
+
+  --text-gray-900: #111827;
+  --text-gray-600: #4b5563;
 
 }
 

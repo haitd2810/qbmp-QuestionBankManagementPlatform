@@ -1,0 +1,39 @@
+.pageTitle {
+  color: var(--text-gray-900);
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.subectList {
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.pageTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.searchWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--off-white);
+  border-radius: 9999px;
+  outline: none;
+  transition: border-color 0.2s;
+  color: var(--text-gray-900);
+}
+
+.searchInput:focus {
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
