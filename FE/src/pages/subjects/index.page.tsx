@@ -38,7 +38,7 @@ export default function Subject() {
     },
   ];
   return (
-    <div className="p-3">
+    <div className={styles.subjectContainer}>
       <div className={styles.pageTitleContainer}>
         <div className={styles.pageTitle}>
           <p>List subjects (Select to enter the question bank)</p>

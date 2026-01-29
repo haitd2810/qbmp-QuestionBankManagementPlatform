@@ -1,0 +1,28 @@
+
+.checkIcon {
+  display: inline-block;
+  font-family: "bootstrap-icons";
+  content: "\f26a";
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.exclamationIcon {
+  display: inline-block;
+  font-family: "bootstrap-icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  -webkit-font-smoothing: antialiased;
+
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.exclamation-icon::before {
+  content: "\f33a"; 
+}
