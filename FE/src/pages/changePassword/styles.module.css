@@ -1,0 +1,42 @@
+.screenCard{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: var(--white);
+  padding: 1rem;
+  border-radius: 1rem;
+  min-width: 500px;
+
+}
+
+.titleContent{
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.containerContent {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 3rem auto;
+  max-width: 1140px; 
+}
+
+.containerForm{
+  width: 50%;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+.centerItem{
+  justify-content: center;
+  min-width: fit-content;
+}
+
+.cardForm{
+  padding: 1rem;
+  border: 1px solid var(--off-white);
+  box-shadow: 0 0.125rem 0.125rem var(--gray-600); 
+  border-radius: 0.5rem; 
+}

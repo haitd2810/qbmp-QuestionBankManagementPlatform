@@ -5,118 +5,46 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  transition: all 0.2s ease-in-out;
 }
 
 .primary {
-  background-color: #ff8400;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--off-white);
+  border: 1px solid var(--primary-color);
 }
 
 .primary:hover {
-  background-color: #FF8C00;
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--gray-600);
 }
 
 .secondary {
-  background-color: #6c757d;
-  color: white;
+  background-color: var(--off-white);
+  color: var(--black);
 }
 
 .secondary:hover {
-  background-color: #5a6268;
-}
-
-.btn-login {
-  background-color: #ff8400;
-  color: white;
-  width: 10rem;
-  height: 3rem;
-  font-size: 1rem;
-}
-
-.btn-login:hover {
-  background-color: white;
-  color: #ff8400;
-  border: 1px solid #ff8400;
+  background-color: transparent;
+  border: 1px solid var(--off-white)
 }
 
 .green {
-  background-color: #34A853;
-  color: white;
-}
-
-.blue {
-  background-color: #0060FF;
-  color: white;
-}
-
-.lightblue {
-  background-color: rgba(105, 155, 247, 0.4);
-  color: black;
-  border-radius: 39px;
-}
-
-.lightorange {
-  background-color: rgba(255, 132, 0, 0.4);
-  color: black;
-  border-radius: 39px;
-}
-
-.lightgreen {
-  background-color: rgba(52, 168, 83, 0.4);
-  color: black;
-  border-radius: 39px;
-}
-
-.buttonContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-.buttonContentAligned {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  background-color: var(--success-color);
+  color: var(--black);
 }
 
 .btn-danger {
-  background-color: #ff3300;
-  color: white;
+  background-color: var(--red-600);
+  color: var(--black);
   width: 10rem;
   height: 3rem;
   font-size: 1rem;
 }
 
 .btn-danger:hover {
-  background-color: white;
-  color: #ff3300;
-  border: 1px solid #ff3300;
-}
-
-button:disabled,
-.btn-login:disabled,
-.btn-danger:disabled {
-  cursor: not-allowed !important;
-  opacity: 0.6;
-}
-
-.btn-delete{
-  background-color: #0077ff;
-  color: white;
-}
-
-.btn-add-teacher{
-  background-color: #ff8400;
-  color: white;
-  width: 90%;
-  height: 3rem;
-  font-size: 1rem;
-}
-
-.btn-add-teacher:hover{
-  background-color: white;
-  color: #ff8400 ;
-  border: 1px solid #ff8400;
+  background-color: var(--black);
+  color: var(--red-600);
+  border: 1px solid var(--red-600);
 }

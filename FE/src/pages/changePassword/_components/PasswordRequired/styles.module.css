@@ -1,0 +1,16 @@
+
+
+.listUnstyled {
+  padding-left: 0;
+  list-style: none;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.textSuccess {
+  color: var(--success-color);
+}
+
+.textDanger {
+  color: var(--red-600);
+}
