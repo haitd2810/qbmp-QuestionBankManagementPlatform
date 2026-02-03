@@ -1,0 +1,91 @@
+.container {
+  background-color: var(--white);
+  padding: 1rem;
+  border-radius: 1rem;
+  min-width: 500px;
+}
+
+.title {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  padding: 10px 14px;
+  width: 280px;
+  border-radius: 8px;
+  border: 1px solid var(--neutral-100);
+}
+
+.addBtn {
+  background: var(--primary-color);
+  color: var(--neutral-100);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--neutral-100);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 14px;
+  text-align: left;
+}
+
+.table thead {
+  background: var(--blue-100);
+}
+
+.table tr:not(:last-child) {
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.activeStatus {
+  background: var(--neutral-200);
+  color: var(--success-color);
+}
+
+.blockedStatus {
+  background: var(--neutral-200);
+  color: var(--error-color);
+}
+
+.actionsContainer .button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.editBtn {
+  background: var(--neutral-200);
+}
+
+.deleteBtn {
+  background: var(--neutral-200);
+  color: var(--red-600);
+}
