@@ -4,6 +4,8 @@ import { FaBars } from "react-icons/fa";
 import SQBMSLogo from "@/assets/logo.png";
 import { useState } from "react";
 import clsx from "clsx";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function AdminLayout({
   children,
@@ -11,6 +13,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const [collapsed, setCollapsed] = useState(false);
+  const router  = useRouter();
+  console.log
   return (
     <div className={styles.dashboardContainer}>
       <aside
@@ -39,7 +43,7 @@ export default function AdminLayout({
         </div>
 
         <nav className={styles.nav}>
-          <div className={styles.menuItem} title="Dashboard">
+          <Link href="/dashboard" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/dashboard" })} title="Dashboard">
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,9 +59,9 @@ export default function AdminLayout({
               </svg>
             )}
             {!collapsed && <span>Dashboard</span>}
-          </div>
+          </Link>
 
-          <div className={styles.menuItem} title="Account">
+          <Link href="/account" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/account" })} title="Account">
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,9 +75,9 @@ export default function AdminLayout({
               </svg>
             )}
             {!collapsed && <span>Account</span>}
-          </div>
+          </Link>
 
-          <div className={styles.menuItem} title="Department">
+          <Link href="/department" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/department" })} title="Department">
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,10 +91,10 @@ export default function AdminLayout({
                 <path d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z" />
               </svg>
             )}
-            {!collapsed && <span>Department</span>}
-          </div>
+            {!collapsed && <Link href="/department">Department</Link>}
+          </Link>
 
-          <div className={styles.menuItem} title="Module AI">
+          <Link href="/moduleai" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/moduleai" })} title="Module AI">
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,9 +108,9 @@ export default function AdminLayout({
               </svg>
             )}
             {!collapsed && <span>Module AI</span>}
-          </div>
+          </Link>
 
-          <div className={styles.menuItem} title="Change Password">
+          <Link href="/changePassword" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/changePassword" })} title="Change Password">
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +125,7 @@ export default function AdminLayout({
               </svg>
             )}
             {!collapsed && <span>Change Password</span>}
-          </div>
+          </Link>
         </nav>
       </aside>
 

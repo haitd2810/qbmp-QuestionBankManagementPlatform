@@ -1,19 +1,20 @@
 .dashboardContainer {
   display: flex;
   min-height: 100vh;
-  background-color: var(--off-white);
+  background: linear-gradient(180deg, var(--off-white), var(--blue-200));
 }
 
 /* ===== SIDEBAR ===== */
 .sidebar {
   width: 250px;
-  background: linear-gradient(180deg, var(--off-white), var(--blue-400));
+  background: linear-gradient(180deg, var(--off-white), var(--blue-200));
   color: var(--white);
   display: flex;
   flex-direction: column;
   box-shadow: 4px 0 12px rgba(0, 0, 0, 0.08);
   transition: width 0.3s ease;
   overflow: hidden;
+  border-right: 3px solid var(--neutral-400);
 }
 
 .sidebarCollapsed {
@@ -61,6 +62,7 @@
   font-size: 15px;
   transition: all 0.2s ease;
   color: var(--primary-color);
+  display: block;
 }
 
 /* Hover effect */
@@ -72,8 +74,8 @@
 
 /* Menu đang active (tự thêm class khi cần) */
 .activeMenu {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--primary-color);
   font-weight: 600;
 }
 
@@ -85,5 +87,5 @@
 }
 
 .marginAuto{
-  margin: auto;
+  margin: 0 auto;
 }

@@ -25,7 +25,7 @@ export default function ChangePassword() {
 
   return (
     <div className={styles.screenCard}>
-      <p className={`${styles.titleContent}`}>Admin/ Change Password</p>
+      <p className={`${styles.titleContent}`}>Change Password</p>
 
       <div className={styles.containerContent}>
         <div className={`${styles.screenCard} ${styles.centerItem}`}>
