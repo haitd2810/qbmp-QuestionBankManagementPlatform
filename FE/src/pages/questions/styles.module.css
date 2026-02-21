@@ -1,0 +1,6 @@
+.questionListContainer{
+  display: flex;
+  height: 90vh;
+  gap: 2rem;
+  
+}
