@@ -23,7 +23,7 @@ export function QuestionProvider({ children, initialData }: Props) {
   const [questions, setQuestions] = useState<Question[]>(initialData);
   // const [ paginatedData, setPaginatedData ] = useState<Question[]>(initialData);
 
-  const itemsPerPage = 5;
+  const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(questions.length / itemsPerPage);

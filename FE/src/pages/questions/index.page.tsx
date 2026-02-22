@@ -4,6 +4,9 @@ import QuestionDetail from "./_components/questionDetail";
 import { InferGetServerSidePropsType } from "next";
 import Questionlist from "./_components/sidebarListQuestion";
 import { QuestionProvider } from "@/context/QuestionContext";
+import Button from "@/components/Button";
+import SearchQuestion from "./_components/searchQuestion";
+import clsx from "clsx";
 
 export const questions = [
   {
@@ -198,6 +201,22 @@ export default function QuestionsPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <QuestionProvider initialData={data}>
+      <div className={styles.actionContainer}>
+        <div className={styles.btnContainer}>
+          <div className={styles.actionBtn}>
+            <Button variant={"danger"}>Delete Question</Button>
+          </div>
+          <div className={styles.actionBtn}>
+            <Button className={styles.btnAdd}>Add Question</Button>
+          </div>
+          <div className={styles.actionBtn}>
+            <Button className={styles.btnCreateSet}>Set Question</Button>
+          </div>
+        </div>
+        <div className={styles.searchAction}>
+          <SearchQuestion />
+        </div>
+      </div>
       <div className={styles.questionListContainer}>
         <QuestionDetail />
         <Questionlist />

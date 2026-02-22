@@ -1,0 +1,47 @@
+
+.quesItem {
+  padding: 5px 20px;
+  border-bottom: 1px solid var(--neutral-200);
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 12px;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+}
+
+.quesItem:hover {
+  background: #f8fafc;
+}
+
+.quesItem.active {
+  background: #eef2ff;
+  border-right: 4px solid var(--primary-color);
+}
+
+.quesId {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+.quesData{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quesTitle {
+  margin: 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+}
+
+.quesMeta {
+  font-size: 12px;
+  color: #64748b;
+}
