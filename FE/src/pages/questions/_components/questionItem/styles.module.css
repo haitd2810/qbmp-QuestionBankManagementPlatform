@@ -11,17 +11,17 @@
 }
 
 .quesItem:hover {
-  background: #f8fafc;
+  background: var(--neutral-300);
 }
 
 .quesItem.active {
-  background: #eef2ff;
+  background: var(--neutral-300);
   border-right: 4px solid var(--primary-color);
 }
 
 .quesId {
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--blue-200);
   font-weight: bold;
 }
 
@@ -38,10 +38,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: black;
+  color: var(--gray-900);
 }
 
 .quesMeta {
   font-size: 12px;
-  color: #64748b;
+  color: var(--blue-400);
 }

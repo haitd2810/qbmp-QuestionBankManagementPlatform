@@ -105,7 +105,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #f1f5f9;
+  background: var(--neutral-300);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,8 +114,8 @@
 }
 
 .correct .ansCircle {
-  background: #22c55e;
-  color: white;
+  background: var(--success-color);
+  color: var(--white);
 }
 
 .answerItem.correct {

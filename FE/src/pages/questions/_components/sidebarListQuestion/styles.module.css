@@ -32,19 +32,19 @@
   text-align: center;
   padding: 6px;
   border-radius: 6px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--neutral-300);
 }
 
 .pagination button {
   padding: 6px 12px;
   border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  background: white;
+  border: 1px solid var(--neutral-300);
+  background: var(--white);
   cursor: pointer;
 }
 
 .pagination button:hover {
-  background: #f1f5f9;
+  background: var(--neutral-300);
 }
 
 .pagination button:disabled {
@@ -53,5 +53,5 @@
 }
 
 .pageTotal {
-  color: #64748b;
+  color: var(--blue-400);
 }
