@@ -1,0 +1,27 @@
+.questionListContainer {
+  display: flex;
+  height: 90vh;
+  gap: 2rem;
+}
+
+.actionContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 6px;
+  justify-content: end;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 12px;
+  margin: auto 12px auto 0;
+}
+
+.btnDelete {
+  background-color: var(--red-500);
+}
+
+.searchAction {
+  margin-left: 12px;
+  width: 450px;
+}

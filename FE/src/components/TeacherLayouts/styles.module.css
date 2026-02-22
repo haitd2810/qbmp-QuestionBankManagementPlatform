@@ -1,13 +1,13 @@
 .dashboardContainer {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--off-white), var(--blue-200));
+  background: linear-gradient(180deg, var(--white) -3.09%, var(--blue-200) 60.26%);
 }
 
 /* ===== SIDEBAR ===== */
 .sidebar {
   width: 250px;
-  background: linear-gradient(180deg, var(--off-white), var(--blue-200));
+  background: linear-gradient(180deg, var(--white), var(--blue-200));
   color: var(--white);
   display: flex;
   flex-direction: column;

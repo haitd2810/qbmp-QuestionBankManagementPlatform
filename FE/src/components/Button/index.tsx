@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styles from './Button.module.css';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'danger';
 type Props = {
   children: ReactNode;
   variant?: ButtonVariant;
