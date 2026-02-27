@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { useLoginAction } from "../LoginProvider";
+import { useLoginAction } from "../../../../context/LoginContext/LoginProvider";
 import  SQBMSLogo from "@/assets/logo.png";
 import GoogleLogo from "@/assets/GoogleLogo.png"
 import styles from "../LandingPage.module.css"
 
 export default function ModalLoginGoole() {
-  const {handleBackdropClick, handleCloseLoginModal} = useLoginAction();
+  const {handleBackdropClick, handleCloseLoginModal, loginWithGoogle} = useLoginAction();
   return (
     <div
       className="fixed modal inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/50 outline-none"
@@ -51,7 +51,7 @@ export default function ModalLoginGoole() {
             <div className="flex justify-center">
               <button
                 className={`rounded-lg hover:cursor-pointer flex items-center justify-center w-full max-w-[320px] pr-4 py-3 border-2 border-[#FF7F00] transition-all hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed`}
-                // onClick={handleGoogleLoginClick}
+                onClick={() => loginWithGoogle()}
               >
                 <Image
                   src={GoogleLogo}

@@ -7,6 +7,8 @@ import { QuestionProvider } from "@/context/QuestionContext";
 import Button from "@/components/Button";
 import SearchQuestion from "./_components/searchQuestion";
 import clsx from "clsx";
+import { useState } from "react";
+import { ModalSetQuestionList } from "@/components/Modals/CreateSetQuestionModal";
 
 export const questions = [
   {
@@ -199,6 +201,12 @@ export const questions = [
 export default function QuestionsPage({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [ isOpenSetQues, setIsOpenSetQues ] = useState(false);
+
+  const toggleSetQuesModal = () => {
+    setIsOpenSetQues(!isOpenSetQues);
+  }
+
   return (
     <QuestionProvider initialData={data}>
       <div className={styles.actionContainer}>
@@ -210,7 +218,7 @@ export default function QuestionsPage({
             <Button className={styles.btnAdd}>Add Question</Button>
           </div>
           <div className={styles.actionBtn}>
-            <Button className={styles.btnCreateSet}>Set Question</Button>
+            <Button className={styles.btnCreateSet} onClick={toggleSetQuesModal}>Set Question</Button>
           </div>
         </div>
         <div className={styles.searchAction}>
@@ -221,6 +229,9 @@ export default function QuestionsPage({
         <QuestionDetail />
         <Questionlist />
       </div>
+      {isOpenSetQues && (
+        <ModalSetQuestionList toggleSetQuesModal={toggleSetQuesModal}/>
+      )}
     </QuestionProvider>
   );
 }

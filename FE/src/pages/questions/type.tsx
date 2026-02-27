@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from "react";
+
 export type Question = {
   questionId: string;
   content: string;
@@ -22,5 +24,6 @@ export type QuestionActionType = {
   setSelectedQuestion: (ques: Question) => void;
   setQuestions: (data: Question[]) => void;
   setCurrentPage: (page: number) => void;
-  getDataOfPage: (page: number) => void
+  getDataOfPage: (page: number) => void;
+  saveDataIntoSet: (ques: Question, isChecked: boolean) => void;
 }
