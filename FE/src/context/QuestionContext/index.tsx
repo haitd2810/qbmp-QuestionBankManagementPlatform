@@ -48,6 +48,21 @@ export function QuestionProvider({ children, initialData }: Props) {
     );
   };
 
+  const saveDataIntoSet = (ques: Question, isChecked: boolean) => {
+    const setTemp = localStorage.getItem("questionSetTemp");
+    let currentList: Question[] = setTemp ? JSON.parse(setTemp) : [];
+    if (isChecked) {
+      if (!currentList.find((item) => item.questionId === ques.questionId)) {
+        currentList.push(ques);
+      }
+    } else {
+      currentList = currentList.filter(
+        (item) => item.questionId !== ques.questionId,
+      );
+    }
+    localStorage.setItem("questionSetTemp", JSON.stringify(currentList));
+  };
+
   return (
     <QuestionStateContext.Provider
       value={{
@@ -63,7 +78,8 @@ export function QuestionProvider({ children, initialData }: Props) {
           setQuestions,
           setSelectedQuestion,
           setCurrentPage,
-          getDataOfPage
+          getDataOfPage,
+          saveDataIntoSet,
         }}
       >
         {children}

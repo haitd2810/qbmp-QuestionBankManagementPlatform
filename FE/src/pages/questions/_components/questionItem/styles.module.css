@@ -11,17 +11,17 @@
 }
 
 .quesItem:hover {
-  background: var(--neutral-300);
+  background: var(--neutral-200);
 }
 
 .quesItem.active {
-  background: var(--neutral-300);
+  background: var(--neutral-100);
   border-right: 4px solid var(--primary-color);
 }
 
 .quesId {
   font-size: 11px;
-  color: var(--blue-200);
+  color: var(--blue-500);
   font-weight: bold;
 }
 
@@ -44,4 +44,10 @@
 .quesMeta {
   font-size: 12px;
   color: var(--blue-400);
+}
+
+.checkSet{
+  accent-color: var(--primary-color);
+  width: 20px;
+  height: 20px;
 }

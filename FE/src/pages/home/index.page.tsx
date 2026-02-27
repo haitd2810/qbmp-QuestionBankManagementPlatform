@@ -3,7 +3,7 @@ import Slider from "./_components/Slider";
 import About from "./_components/About";
 import FQA from "./_components/FQA";
 import Contact from "./_components/Contact";
-import { LoginProvider } from "./_components/LoginProvider";
+import { LoginProvider } from "../../context/LoginContext/LoginProvider";
 export default function Home() {
   return (
     <div className="App w-screen">

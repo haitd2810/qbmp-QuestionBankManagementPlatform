@@ -6,7 +6,7 @@ import GoogleLogo from "@/assets/GoogleLogo.png";
 import styles from "../LandingPage.module.css";
 import Image from "next/image";
 import ModalLoginGoole from "../ModalLoginGoogle";
-import { useLoginAction, useLoginState } from "../LoginProvider";
+import { useLoginAction, useLoginState } from "../../../../context/LoginContext/LoginProvider";
 
 function Header() {
   const { handleShowLoginModal } = useLoginAction();
@@ -26,7 +26,7 @@ function Header() {
           <li className="nav-item">
             <Button
               children="Login"
-              variant="btn-login"
+              className="btn-login"
               onClick={handleShowLoginModal}
             />
           </li>
