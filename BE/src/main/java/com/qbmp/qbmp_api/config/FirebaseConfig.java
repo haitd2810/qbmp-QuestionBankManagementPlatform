@@ -21,8 +21,6 @@ public class FirebaseConfig {
         String path = System.getenv("FIREBASE_CONFIG_JSON");
         String firebaseConfig = Files.readString(Path.of(path));
 
-        System.out.println("Nội dung nhận được: " + firebaseConfig);
-
         if(firebaseConfig == null || firebaseConfig.isEmpty()){
             throw new IllegalStateException("Firebase env is not exist!");
         }
