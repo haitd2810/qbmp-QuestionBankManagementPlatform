@@ -2,6 +2,8 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { LoginActionType, LoginStateType } from "./type";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { initializeApp, getApps, getApp } from "firebase/app";
+import { axiosInstance, setAccessToken } from "@/lib/axios";
+import { login } from "@/api/auth.api";
 
 const LoginActionContext = createContext({} as LoginActionType);
 const LoginStateContext = createContext({} as LoginStateType);
@@ -37,15 +39,10 @@ export function LoginProvider({ children } : {children: ReactNode}){
       const result = await signInWithPopup(auth, provider);
       const idToken = await result.user.getIdToken();
 
-      console.log(idToken);
-      const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_HOST + "/api/auth/login",{
-        method: "POST",
-        headers: { "Authorization" : `Bearer ${idToken}`}
-      });
-
-      const data = await response.json();
-      console.log(data)
-      return data;
+      setAccessToken(idToken);
+      
+      const response = await login();
+      return response;
     }catch(error){
       console.error("login failed: ", error)
     }
