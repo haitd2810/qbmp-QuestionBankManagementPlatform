@@ -23,7 +23,6 @@ const Header: React.FC = () => {
   }, []);
 
   const handleLogout = () => {
-    console.log("Logging out...");
     setIsOpen(false);
   };
 

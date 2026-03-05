@@ -2,7 +2,8 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { LoginActionType, LoginStateType } from "./type";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { axiosInstance, setAccessToken } from "@/lib/axios";
+import { setAccessToken } from "@/lib/axios";
+import { toast } from "react-hot-toast";
 import { login } from "@/api/auth.api";
 
 const LoginActionContext = createContext({} as LoginActionType);
@@ -14,10 +15,10 @@ const firebaseConfig = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-export function LoginProvider({ children } : {children: ReactNode}){
+export function LoginProvider({ children }: { children: ReactNode }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const handleShowLoginModal = () => setShowLoginModal(true);
   const handleCloseLoginModal = () => {
@@ -42,25 +43,43 @@ export function LoginProvider({ children } : {children: ReactNode}){
       setAccessToken(idToken);
       
       const response = await login();
+      toast.success("Login success, welcome " + response.data.fullName);
       return response;
-    }catch(error){
-      console.error("login failed: ", error)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(`Error: ${error.message}`);
+      } else if (
+        typeof error === "object" &&
+        error !== null &&
+        "message" in error
+      ) {
+        toast.error(`Error: ${(error as any).message}`);
+      } else {
+        toast.error("Đã có lỗi xảy ra");
+      }
     }
-  }
+  };
 
   return (
-    <LoginStateContext.Provider value = {{ showLoginModal }}>
-      <LoginActionContext.Provider value = {{handleBackdropClick, handleCloseLoginModal, handleShowLoginModal, loginWithGoogle}}>
+    <LoginStateContext.Provider value={{ showLoginModal }}>
+      <LoginActionContext.Provider
+        value={{
+          handleBackdropClick,
+          handleCloseLoginModal,
+          handleShowLoginModal,
+          loginWithGoogle,
+        }}
+      >
         {children}
       </LoginActionContext.Provider>
     </LoginStateContext.Provider>
-  )
+  );
 }
 
 export const useLoginState = () => {
   return useContext(LoginStateContext);
-}
+};
 
 export const useLoginAction = () => {
   return useContext(LoginActionContext);
-}
+};
