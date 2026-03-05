@@ -9,3 +9,8 @@ export type LoginActionType = {
 export type LoginStateType = {
   showLoginModal: boolean,
 }
+
+export type ERROR = {
+  code: number;
+  message: string;
+}

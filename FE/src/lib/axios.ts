@@ -23,10 +23,13 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
+    const backendError = error.response?.data;
     if (error.response?.status === 401) {
       setAccessToken(null);
-      window.location.href = "/login";
+      setTimeout(() => {
+        window.location.href = "/home";
+      }, 2000);
     }
-    return Promise.reject(error);
+    return Promise.reject(backendError || error);
   }
 );

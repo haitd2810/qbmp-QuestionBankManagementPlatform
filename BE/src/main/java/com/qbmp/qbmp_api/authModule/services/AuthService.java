@@ -5,13 +5,12 @@ import com.qbmp.qbmp_api.authModule.repository.IAuthRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
+import com.qbmp.qbmp_api.common.exception.AppException;
+import com.qbmp.qbmp_api.common.message.ErrorMessage;
 import com.qbmp.qbmp_api.entity.Users;
 import com.qbmp.qbmp_api.userModule.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-import com.qbmp.qbmp_api.userModule.repository.IUserRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +35,7 @@ public class AuthService {
             response.setFullName(user.getFullname());
             return response;
         }catch(FirebaseAuthException ex){
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid Firebase Token");
+            throw new AppException(401, ErrorMessage.AUTHEN_ERROR.getCode(), ErrorMessage.AUTHEN_ERROR.getMessage());
         }
     }
 
