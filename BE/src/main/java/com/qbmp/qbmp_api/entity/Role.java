@@ -21,4 +21,7 @@ public class Role {
 
     @Column(name = "RoleName")
     private String roleName;
+
+    @Column(name = "priority")
+    private int priority;
 }

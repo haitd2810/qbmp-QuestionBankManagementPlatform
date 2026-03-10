@@ -26,9 +26,6 @@ public class Users {
     @Column(name = "FullName", nullable = false, length = 255)
     private String fullname;
 
-    @Column(name = "RoleId", nullable = false)
-    private String roleId;
-
     @Column(name = "Status", length = 8)
     private String status;
 
@@ -52,4 +49,7 @@ public class Users {
     @Column(name = "UpdateAt")
     private LocalDateTime updateAt;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "RoleId", referencedColumnName = "RoleId")
+    private Role role;
 }
