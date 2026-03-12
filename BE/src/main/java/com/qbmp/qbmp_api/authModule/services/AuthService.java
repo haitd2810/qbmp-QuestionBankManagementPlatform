@@ -21,6 +21,7 @@ public class AuthService {
         Users user = userService.getOrCreateUser(uid, decodedToken);
         AuthResponse response = AuthResponse.builder()
                 .fullName(user.getFullname())
+                .role(user.getRole().getRoleName())
                 .build();
         return response;
     }
