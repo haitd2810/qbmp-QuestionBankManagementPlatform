@@ -1,7 +1,9 @@
 package com.qbmp.qbmp_api.common.exceptionHandler;
 
+import com.google.firebase.auth.FirebaseAuthException;
 import com.qbmp.qbmp_api.common.dto.APIResponse;
 import com.qbmp.qbmp_api.common.exception.AppException;
+import com.qbmp.qbmp_api.common.message.ErrorMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -24,5 +26,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<APIResponse<Object>> handleGeneralException(Exception ex) {
         APIResponse<Object> response = APIResponse.error(500, "Internal Server Error", ex.getMessage(), 9999);
         return ResponseEntity.status(500).body(response);
+    }
+
+    @ExceptionHandler(FirebaseAuthException.class)
+    public ResponseEntity<APIResponse<Object>> handleFirebaseException(FirebaseAuthException ex){
+        APIResponse<Object> response = APIResponse.error(
+                401,
+                ErrorMessage.AUTHEN_ERROR.getMessage(),
+                null,
+                ErrorMessage.AUTHEN_ERROR.getCode()
+        );
+        return ResponseEntity.status(401).body(response);
     }
 }
