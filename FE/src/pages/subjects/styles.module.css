@@ -22,6 +22,8 @@
   position: relative;
   width: 100%;
   max-width: 300px;
+  border: 1px solid var(--primary-color);
+  border-radius: 9999px;
 }
 
 .searchInput {
