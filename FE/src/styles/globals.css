@@ -5,7 +5,7 @@
   --black: #171717;
   
   --success-color: #34A853;
-  --primary-color: #3468a8;
+  --primary-color: var(--blue-500);
   --error-color: #EA4335;
 
   --color-orange-main: #FF8400;
@@ -23,16 +23,26 @@
   --red-500:	#ef4444;
   --red-400:	#f87171;
   --red-300:	#fca5a5;
-
+/* 
   --blue-100: #e8f0f8bc;
   --blue-200: #c9d9ecbc;
   --blue-300: #9fb8d9bc;
-  --blue-400: #5d82aebc; /* màu gốc */
+  --blue-400: #5d82aebc;
   --blue-500: #4c6f99bc;
   --blue-600: #3c5b7cbc;
   --blue-700: #2d4660bc;
   --blue-800: #1e3044bc;
-  --blue-900: #111c29bc;
+  --blue-900: #111c29bc; */
+
+  --blue-100: #e6eff8;
+  --blue-200: #c2d7ed;
+  --blue-300: #92b6dd;
+  --blue-400: #6294cd;
+  --blue-500: #3468a8;
+  --blue-600: #2a548a;
+  --blue-700: #20416c;
+  --blue-800: #162d4e;
+  --blue-900: #0c182a;
 
   --neutral-100: #f5f5f5;
   --neutral-200: #e5e5e5;

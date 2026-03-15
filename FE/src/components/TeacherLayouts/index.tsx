@@ -1,11 +1,27 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaChevronDown, FaUser, FaUsers, FaUserShield } from "react-icons/fa";
 import SQBMSLogo from "@/assets/logo.png";
 import { useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Dropdown, { DropdownOption } from "../Dropdown";
+
+const ROLES = [
+  { id: 'teacher', label: 'Teacher', icon: <FaUser /> },
+  { id: 'leader', label: 'Subject Leader', icon: <FaUsers /> },
+  { id: 'head', label: 'Subject Head', icon: <FaUserShield /> },
+];
+
+const SUBJECTS = [
+  {
+    id: '001', label: "SWD392ddadadadadsssssssssssssssssssssssssssssssssssssssss"
+  },
+  {
+    id: '002', label: "SWR302"
+  }
+]
 
 export default function TeacherLayouts({
   children,
@@ -14,6 +30,9 @@ export default function TeacherLayouts({
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const router  = useRouter();
+  const [roleSelected, setRoleSelected] = useState<DropdownOption>(ROLES[0]);
+  const [selectedSubject, setSelectedSubject] = useState(SUBJECTS[0]);
+
   return (
     <div className={styles.dashboardContainer}>
       <aside
@@ -21,28 +40,43 @@ export default function TeacherLayouts({
           [styles.sidebarCollapsed]: collapsed,
         })}
       >
-        <div className={styles.toggleBtnContainer}>
-          <button
-            className={clsx(styles.toggleBtn, {
-              [styles.marginAuto]: collapsed,
-            })}
-            onClick={() => setCollapsed(!collapsed)}
-          >
+        <div className={clsx(styles.toggleBtnContainer, { [styles.collapsedContainer]: collapsed })}>
+          
+          <Dropdown 
+            options={ROLES}
+            selected={roleSelected}
+            onSelect={(opt) => setRoleSelected(opt)}
+            collapsed={collapsed}
+            className={styles.dropdownRoles}
+          />
+
+          <button className={styles.toggleBtn} onClick={() => setCollapsed(!collapsed)}>
             <FaBars />
           </button>
         </div>
-        <div className={styles.logoArea}>
-          {!collapsed && (
+        {!collapsed && (
+          <div className={styles.logoArea}>
             <Image
               src={SQBMSLogo}
               className={styles.Imagelogo}
               alt="SQBMS Logo"
             />
-          )}
+          </div>
+        )}
+        {!collapsed && (
+          <div className={styles.subjectContainer}>
+          <Dropdown 
+            options={SUBJECTS}
+            selected={selectedSubject}
+            onSelect={(opt) => setSelectedSubject(opt)}
+            collapsed={collapsed}
+            className={styles.dropdownRoles}
+          />
         </div>
+        )}
 
         <nav className={styles.nav}>
-          <Link href="/#" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/questions" })} title="Dashboard">
+          <Link href="/questions" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/questions" })} title="Dashboard">
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
