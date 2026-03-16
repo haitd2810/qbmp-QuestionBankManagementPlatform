@@ -1,12 +1,11 @@
-package com.qbmp.qbmp_api.userModule.controller;
+package com.qbmp.qbmp_api.identityModule.controller;
 
 import com.qbmp.qbmp_api.common.dto.APIResponse;
-import com.qbmp.qbmp_api.userModule.dto.response.RoleListResponse;
-import com.qbmp.qbmp_api.userModule.service.RoleService;
+import com.qbmp.qbmp_api.identityModule.dto.response.RoleListResponse;
+import com.qbmp.qbmp_api.identityModule.services.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
