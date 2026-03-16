@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styles from "./styles.module.css";
 import clsx from "clsx";
 
@@ -12,9 +13,16 @@ export type Props = {
 }
 export default function SubjectCard(props : Props) {
   const { subject } = props;
+
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push('/questions');
+  }
   return (
     <article
       className={styles.cardSubject}
+      onClick={() => handleRedirect()}
     >
       <div className={styles.cardContent}>
         <div className={styles.subjectCard}>
@@ -36,7 +44,7 @@ export default function SubjectCard(props : Props) {
             </span>
           </div>
           <a
-            href="#"
+            href="/questions"
             className={styles.btnQuesBank}
           >
             Ngân hàng câu hỏi

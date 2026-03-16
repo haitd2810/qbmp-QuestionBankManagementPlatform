@@ -1,25 +1,20 @@
-.main-content {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+.mainContent {
+  height: 100vh;
+}
 
-  max-width: 80rem;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  padding-left: 1rem;
-  padding-right: 1rem;
+.wrapper{
+  background: linear-gradient(180deg, var(--white), var(--blue-200));
 }
 
 @media (min-width: 640px) {
-  .main-content {
+  .mainContent {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .main-content {
+  .mainContent {
     padding-left: 2rem;
     padding-right: 2rem;
   }

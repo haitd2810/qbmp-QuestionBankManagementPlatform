@@ -1,6 +1,6 @@
 /* styles/Header.module.css */
 .header {
-  background-color: var(--off-white);
+  background-color: var(--neutral-100);
   border-bottom: 1px solid var(--off-white);
   height: 64px;
   display: flex;
@@ -80,7 +80,7 @@
   position: absolute;
   right: 0;
   width: 200px;
-  background-color: var(--primary-color);
+  background-color: var(--blue-500);
   border-radius: 8px;
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.1),

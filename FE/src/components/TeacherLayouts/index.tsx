@@ -1,11 +1,29 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUser, FaUsers, FaUserShield } from "react-icons/fa";
 import SQBMSLogo from "@/assets/logo.png";
 import { useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Dropdown, { DropdownOption } from "../Dropdown";
+
+const ROLES = [
+  { id: "teacher", label: "Teacher", icon: <FaUser /> },
+  { id: "leader", label: "Subject Leader", icon: <FaUsers /> },
+  { id: "head", label: "Subject Head", icon: <FaUserShield /> },
+];
+
+const SUBJECTS = [
+  {
+    id: "001",
+    label: "SWD392ddadadadadsssssssssssssssssssssssssssssssssssssssss",
+  },
+  {
+    id: "002",
+    label: "SWR302",
+  },
+];
 
 export default function TeacherLayouts({
   children,
@@ -13,7 +31,10 @@ export default function TeacherLayouts({
   children: React.ReactNode;
 }) {
   const [collapsed, setCollapsed] = useState(false);
-  const router  = useRouter();
+  const router = useRouter();
+  const [roleSelected, setRoleSelected] = useState<DropdownOption>(ROLES[0]);
+  const [selectedSubject, setSelectedSubject] = useState(SUBJECTS[0]);
+
   return (
     <div className={styles.dashboardContainer}>
       <aside
@@ -21,28 +42,55 @@ export default function TeacherLayouts({
           [styles.sidebarCollapsed]: collapsed,
         })}
       >
-        <div className={styles.toggleBtnContainer}>
+        <div
+          className={clsx(styles.toggleBtnContainer, {
+            [styles.collapsedContainer]: collapsed,
+          })}
+        >
+          <Dropdown
+            options={ROLES}
+            selected={roleSelected}
+            onSelect={(opt) => setRoleSelected(opt)}
+            collapsed={collapsed}
+            className={styles.dropdownRoles}
+          />
+
           <button
-            className={clsx(styles.toggleBtn, {
-              [styles.marginAuto]: collapsed,
-            })}
+            className={styles.toggleBtn}
             onClick={() => setCollapsed(!collapsed)}
           >
             <FaBars />
           </button>
         </div>
-        <div className={styles.logoArea}>
-          {!collapsed && (
+        {!collapsed && (
+          <div className={styles.logoArea}>
             <Image
               src={SQBMSLogo}
               className={styles.Imagelogo}
               alt="SQBMS Logo"
             />
-          )}
-        </div>
+          </div>
+        )}
+        {!collapsed && (
+          <div className={styles.subjectContainer}>
+            <Dropdown
+              options={SUBJECTS}
+              selected={selectedSubject}
+              onSelect={(opt) => setSelectedSubject(opt)}
+              collapsed={collapsed}
+              className={styles.dropdownRoles}
+            />
+          </div>
+        )}
 
         <nav className={styles.nav}>
-          <Link href="/#" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/questions" })} title="Dashboard">
+          <Link
+            href="/questions"
+            className={clsx(styles.menuItem, {
+              [styles.activeMenu]: router.pathname === "/questions",
+            })}
+            title="Dashboard"
+          >
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +108,13 @@ export default function TeacherLayouts({
             {!collapsed && <span>Questions</span>}
           </Link>
 
-          <Link href="/#" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/questionsets" })} title="Account">
+          <Link
+            href="/#"
+            className={clsx(styles.menuItem, {
+              [styles.activeMenu]: router.pathname === "/questionsets",
+            })}
+            title="Account"
+          >
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +130,13 @@ export default function TeacherLayouts({
             {!collapsed && <span>Question Set</span>}
           </Link>
 
-          <Link href="/#" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/books" })} title="Department">
+          <Link
+            href="/#"
+            className={clsx(styles.menuItem, {
+              [styles.activeMenu]: router.pathname === "/books",
+            })}
+            title="Department"
+          >
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +153,13 @@ export default function TeacherLayouts({
             {!collapsed && <span>Book</span>}
           </Link>
 
-          <Link href="/#" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/requests" })} title="Module AI">
+          <Link
+            href="/#"
+            className={clsx(styles.menuItem, {
+              [styles.activeMenu]: router.pathname === "/requests",
+            })}
+            title="Module AI"
+          >
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +175,13 @@ export default function TeacherLayouts({
             {!collapsed && <span>Requests</span>}
           </Link>
 
-          <Link href="/#" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/tasks" })} title="Change Password">
+          <Link
+            href="/#"
+            className={clsx(styles.menuItem, {
+              [styles.activeMenu]: router.pathname === "/tasks",
+            })}
+            title="Change Password"
+          >
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -126,18 +198,24 @@ export default function TeacherLayouts({
             {!collapsed && <span>Tasks</span>}
           </Link>
 
-          <Link href="/#" className={clsx(styles.menuItem, { [styles.activeMenu]: router.pathname === "/trash" })} title="Change Password">
+          <Link
+            href="/#"
+            className={clsx(styles.menuItem, {
+              [styles.activeMenu]: router.pathname === "/trash",
+            })}
+            title="Change Password"
+          >
             {collapsed && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
                 fill="currentColor"
-                className="bi bi-key"
+                className="bi bi-trash"
                 viewBox="0 0 16 16"
               >
-                <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5" />
-                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
               </svg>
             )}
             {!collapsed && <span>Trash</span>}

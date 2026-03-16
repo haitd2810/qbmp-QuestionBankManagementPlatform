@@ -41,7 +41,7 @@ export default function Subject() {
     <div className={styles.subjectContainer}>
       <div className={styles.pageTitleContainer}>
         <div className={styles.pageTitle}>
-          <p>List subjects (Select to enter the question bank)</p>
+          <p>Role: Teacher (Select subject to enter the question bank)</p>
         </div>
 
         <div className={styles.searchWrapper}>
