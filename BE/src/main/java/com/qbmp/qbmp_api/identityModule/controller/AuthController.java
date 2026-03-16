@@ -1,7 +1,7 @@
-package com.qbmp.qbmp_api.authModule.controller;
+package com.qbmp.qbmp_api.identityModule.controller;
 
-import com.qbmp.qbmp_api.authModule.dto.response.AuthResponse;
-import com.qbmp.qbmp_api.authModule.services.AuthService;
+import com.qbmp.qbmp_api.identityModule.dto.response.AuthResponse;
+import com.qbmp.qbmp_api.identityModule.services.AuthService;
 import com.qbmp.qbmp_api.common.dto.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

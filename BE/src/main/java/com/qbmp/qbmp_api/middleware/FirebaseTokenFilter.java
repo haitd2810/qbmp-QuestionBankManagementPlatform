@@ -5,12 +5,11 @@ import com.google.firebase.auth.FirebaseToken;
 import com.qbmp.qbmp_api.common.exception.AppException;
 import com.qbmp.qbmp_api.common.message.ErrorMessage;
 import com.qbmp.qbmp_api.entity.Users;
-import com.qbmp.qbmp_api.userModule.service.UserService;
+import com.qbmp.qbmp_api.identityModule.services.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +20,6 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Component
 public class FirebaseTokenFilter extends OncePerRequestFilter {
