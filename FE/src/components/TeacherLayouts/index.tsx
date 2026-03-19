@@ -1,27 +1,49 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { FaBars, FaUser, FaUsers, FaUserShield } from "react-icons/fa";
+import {
+  FaBars,
+  FaQuestionCircle,
+  FaUser,
+  FaUsers,
+  FaUserShield,
+} from "react-icons/fa";
 import SQBMSLogo from "@/assets/logo.png";
-import { useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Dropdown, { DropdownOption } from "../Dropdown";
+import { getSubjectsData } from "@/api/subjects.api";
+import { toast } from "react-hot-toast";
+import { getRolesData } from "@/api/roles.api";
 
-const ROLES = [
-  { id: "teacher", label: "Teacher", icon: <FaUser /> },
-  { id: "leader", label: "Subject Leader", icon: <FaUsers /> },
-  { id: "head", label: "Subject Head", icon: <FaUserShield /> },
-];
+type Subject = {
+  subjectId: String;
+  subjectName: String;
+  subjectCode: String;
+  description: String;
+};
 
-const SUBJECTS = [
+type Role = {
+  roleId: String;
+  roleName: String;
+};
+
+const ROLE_CONFIG: { [key: string]: { icon: JSX.Element; label: string } } = {
+  "teacher": { icon: <FaUser />, label: "Giáo viên" },
+  "leader": { icon: <FaUsers />, label: "Tổ trưởng" },
+  "head": { icon: <FaUserShield />, label: "Trưởng bộ môn" },
+  "default": { icon: <FaQuestionCircle />, label: "Khác" }
+};
+
+const TempData = [
   {
-    id: "001",
-    label: "SWD392ddadadadadsssssssssssssssssssssssssssssssssssssssss",
+    id: "",
+    label: "",
   },
   {
-    id: "002",
-    label: "SWR302",
+    id: "",
+    label: "",
   },
 ];
 
@@ -32,9 +54,53 @@ export default function TeacherLayouts({
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const router = useRouter();
-  const [roleSelected, setRoleSelected] = useState<DropdownOption>(ROLES[0]);
-  const [selectedSubject, setSelectedSubject] = useState(SUBJECTS[0]);
+  const [roles, setRoles] = useState(TempData);
+  const [roleSelected, setRoleSelected] = useState<DropdownOption>(TempData[0]);
+  const [selectedSubject, setSelectedSubject] = useState(TempData[0]);
+  const [subjects, setSubjects] = useState(TempData);
+  const [ isLoading, setIsLoading ] = useState(false);
 
+  useEffect(() => {
+    const loadAllData = async () => {
+      try {
+        setIsLoading(true);
+
+        const [subjectsRes, rolesRes] = await Promise.all([
+          getSubjectsData(),
+          getRolesData(),
+        ]);
+
+        const subjectsData = subjectsRes.data.subjects.map((item: Subject) => ({
+          id: item.subjectId,
+          label: item.subjectCode,
+        }));
+        setSubjects(subjectsData);
+        if (subjectsData.length > 0) setSelectedSubject(subjectsData[0]);
+
+        const rolesData = rolesRes.data.roles.map((item: Role) => {
+          const roleKey = item.roleName.toLowerCase();
+
+          const config = ROLE_CONFIG[roleKey] || ROLE_CONFIG["default"];
+
+          return {
+            id: item.roleId,
+            label: item.roleName,
+            icon: config.icon,
+          };
+        });
+        setRoles(rolesData);
+        if (rolesData.length > 0) setRoleSelected(rolesData[0]);
+      } catch (error: any) {
+        const message = error?.message || (typeof error === "object" && error?.message) || "Something went wrong";
+        toast.error(`Error: ${message}`);
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadAllData();
+  }, []);
   return (
     <div className={styles.dashboardContainer}>
       <aside
@@ -48,11 +114,12 @@ export default function TeacherLayouts({
           })}
         >
           <Dropdown
-            options={ROLES}
+            options={roles}
             selected={roleSelected}
             onSelect={(opt) => setRoleSelected(opt)}
             collapsed={collapsed}
             className={styles.dropdownRoles}
+            isLoading={isLoading}
           />
 
           <button
@@ -74,11 +141,12 @@ export default function TeacherLayouts({
         {!collapsed && (
           <div className={styles.subjectContainer}>
             <Dropdown
-              options={SUBJECTS}
+              options={subjects}
               selected={selectedSubject}
               onSelect={(opt) => setSelectedSubject(opt)}
               collapsed={collapsed}
               className={styles.dropdownRoles}
+              isLoading={isLoading}
             />
           </div>
         )}

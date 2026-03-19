@@ -1,4 +1,4 @@
-package com.qbmp.qbmp_api.identityModule.repository;
+package com.qbmp.qbmp_api.identityModule.repositories;
 
 import com.qbmp.qbmp_api.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;

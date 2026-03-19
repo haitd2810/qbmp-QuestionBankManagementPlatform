@@ -1,4 +1,4 @@
-package com.qbmp.qbmp_api.identityModule.dto.request;
+package com.qbmp.qbmp_api.identityModule.dtos.request;
 
 import lombok.Data;
 

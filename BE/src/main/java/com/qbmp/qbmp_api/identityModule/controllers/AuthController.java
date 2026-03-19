@@ -1,6 +1,6 @@
-package com.qbmp.qbmp_api.identityModule.controller;
+package com.qbmp.qbmp_api.identityModule.controllers;
 
-import com.qbmp.qbmp_api.identityModule.dto.response.AuthResponse;
+import com.qbmp.qbmp_api.identityModule.dtos.response.AuthResponse;
 import com.qbmp.qbmp_api.identityModule.services.AuthService;
 import com.qbmp.qbmp_api.common.dto.APIResponse;
 import lombok.RequiredArgsConstructor;

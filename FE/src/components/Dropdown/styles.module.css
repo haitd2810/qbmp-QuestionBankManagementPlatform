@@ -49,7 +49,7 @@
   width: fit-content;
   z-index: 100;
   max-width: 150px;
-  /* min-width: 100%; */
+  width: stretch;
 }
 
 .collapsedMenu{
@@ -99,4 +99,20 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.loader {
+  width: 12px;
+  height: 12px;
+  border: 5px solid #FFF;
+  border-bottom-color: var(--primary-color);
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

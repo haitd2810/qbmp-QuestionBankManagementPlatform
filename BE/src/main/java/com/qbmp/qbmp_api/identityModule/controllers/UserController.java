@@ -1,7 +1,7 @@
-package com.qbmp.qbmp_api.identityModule.controller;
+package com.qbmp.qbmp_api.identityModule.controllers;
 
 import com.qbmp.qbmp_api.common.dto.APIResponse;
-import com.qbmp.qbmp_api.identityModule.dto.response.RoleListResponse;
+import com.qbmp.qbmp_api.identityModule.dtos.response.RoleListResponse;
 import com.qbmp.qbmp_api.identityModule.services.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

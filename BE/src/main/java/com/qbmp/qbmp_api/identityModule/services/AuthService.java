@@ -1,6 +1,6 @@
 package com.qbmp.qbmp_api.identityModule.services;
 
-import com.qbmp.qbmp_api.identityModule.dto.response.AuthResponse;
+import com.qbmp.qbmp_api.identityModule.dtos.response.AuthResponse;
 import com.google.firebase.auth.FirebaseToken;
 import com.qbmp.qbmp_api.entity.Users;
 import com.qbmp.qbmp_api.firebaseModule.service.FirebaseService;

@@ -2,7 +2,6 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { LoginActionType, LoginStateType } from "./type";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { setAccessToken } from "@/lib/axios";
 import { toast } from "react-hot-toast";
 import { login } from "@/api/auth.api";
 
@@ -40,7 +39,7 @@ export function LoginProvider({ children }: { children: ReactNode }) {
       const result = await signInWithPopup(auth, provider);
       const idToken = await result.user.getIdToken();
 
-      setAccessToken(idToken);
+      localStorage.setItem("token", idToken);
       
       const response = await login();
       toast.success("Login success, welcome " + response.data.fullName);

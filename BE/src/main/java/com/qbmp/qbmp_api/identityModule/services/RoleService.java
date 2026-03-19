@@ -2,9 +2,9 @@ package com.qbmp.qbmp_api.identityModule.services;
 
 import com.qbmp.qbmp_api.entity.Role;
 import com.qbmp.qbmp_api.entity.Users;
-import com.qbmp.qbmp_api.identityModule.dto.response.RoleListResponse;
-import com.qbmp.qbmp_api.identityModule.dto.response.RoleResponse;
-import com.qbmp.qbmp_api.identityModule.repository.IRoleRepository;
+import com.qbmp.qbmp_api.identityModule.dtos.response.RoleListResponse;
+import com.qbmp.qbmp_api.identityModule.dtos.response.RoleResponse;
+import com.qbmp.qbmp_api.identityModule.repositories.IRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

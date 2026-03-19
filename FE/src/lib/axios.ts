@@ -2,10 +2,6 @@ import axios from "axios";
 
 let accessToken: string | null = null;
 
-export const setAccessToken = (token: string | null) => {
-  accessToken = token;
-};
-
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_HOST,
   headers: {
@@ -14,9 +10,8 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`;
-  }
+  accessToken = localStorage.getItem("token");
+  config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
 });
 
@@ -25,7 +20,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const backendError = error.response?.data;
     if (error.response?.status === 401) {
-      setAccessToken(null);
+      localStorage.removeItem("token")
       setTimeout(() => {
         window.location.href = "/home";
       }, 2000);
