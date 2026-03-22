@@ -2,7 +2,7 @@ import {
   Question,
   QuestionActionType,
   QuestionContextType,
-} from "@/pages/questions/type";
+} from "@/context/QuestionContext/type";
 import {
   createContext,
   ReactNode,

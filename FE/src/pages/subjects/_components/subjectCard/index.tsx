@@ -1,18 +1,15 @@
 import { useRouter } from "next/router";
 import styles from "./styles.module.css";
 import clsx from "clsx";
+import { Subject } from "@/context/UserDataContext/type";
+import { FaBook } from "react-icons/fa";
 
-export type Subject = {
-  code: string,
-  name: string,
-  description: string,
-  role: string
-}
 export type Props = {
-  subject: Subject
+  subject: Subject,
+  key: string;
 }
 export default function SubjectCard(props : Props) {
-  const { subject } = props;
+  const { subject, key } = props;
 
   const router = useRouter();
 
@@ -23,14 +20,16 @@ export default function SubjectCard(props : Props) {
     <article
       className={styles.cardSubject}
       onClick={() => handleRedirect()}
+      key={key}
     >
       <div className={styles.cardContent}>
         <div className={styles.subjectCard}>
-          <span className={styles.subjectContent}>{subject.code}</span>
+          <span className={styles.subjectContent}>{subject.subjectCode}</span>
         </div>
 
         <h3 className={styles.subjectCard}>
-          <span className={clsx(styles.subjectContent, styles.subjectName)}>{subject.name}</span>
+          <FaBook />
+          <span className={clsx(styles.subjectContent, styles.subjectName)}>{subject.subjectName}</span>
         </h3>
 
         <p className={styles.subjectCard}>

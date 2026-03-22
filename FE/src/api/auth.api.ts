@@ -1,7 +1,9 @@
 // api/auth.api.ts
-import { axiosInstance } from "@/lib/axios";
+import { getApiClient } from "@/lib/axios";
+import { GetServerSidePropsContext } from "next";
 
 export const login = async () => {
-  const response = await axiosInstance.post("/api/auth/login");
+  const api = getApiClient();
+  const response = await api.post("/api/auth/login");
   return response.data;
 };

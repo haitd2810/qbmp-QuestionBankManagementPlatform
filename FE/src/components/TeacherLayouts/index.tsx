@@ -18,22 +18,22 @@ import { toast } from "react-hot-toast";
 import { getRolesData } from "@/api/roles.api";
 
 type Subject = {
-  subjectId: String;
-  subjectName: String;
-  subjectCode: String;
-  description: String;
+  subjectId: string;
+  subjectName: string;
+  subjectCode: string;
+  description: string;
 };
 
 type Role = {
-  roleId: String;
-  roleName: String;
+  roleId: string;
+  roleName: string;
 };
 
 const ROLE_CONFIG: { [key: string]: { icon: JSX.Element; label: string } } = {
-  "teacher": { icon: <FaUser />, label: "Giáo viên" },
-  "leader": { icon: <FaUsers />, label: "Tổ trưởng" },
-  "head": { icon: <FaUserShield />, label: "Trưởng bộ môn" },
-  "default": { icon: <FaQuestionCircle />, label: "Khác" }
+  "teacher": { icon: <FaUser />, label: "teacher" },
+  "leader": { icon: <FaUsers />, label: "leader" },
+  "head": { icon: <FaUserShield />, label: "head" },
+  "default": { icon: <FaQuestionCircle />, label: "other" }
 };
 
 const TempData = [

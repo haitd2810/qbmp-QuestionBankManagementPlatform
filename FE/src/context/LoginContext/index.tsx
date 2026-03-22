@@ -4,6 +4,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { toast } from "react-hot-toast";
 import { login } from "@/api/auth.api";
+import Cookies from "js-cookie";
 
 const LoginActionContext = createContext({} as LoginActionType);
 const LoginStateContext = createContext({} as LoginStateType);
@@ -35,12 +36,17 @@ export function LoginProvider({ children }: { children: ReactNode }) {
 
   const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    try{
+    try {
       const result = await signInWithPopup(auth, provider);
       const idToken = await result.user.getIdToken();
 
-      localStorage.setItem("token", idToken);
-      
+      Cookies.set("token", idToken, {
+        expires: 7,
+        path: "/",
+        secure: false,
+        sameSite: "strict",
+      });
+
       const response = await login();
       toast.success("Login success, welcome " + response.data.fullName);
       return response;

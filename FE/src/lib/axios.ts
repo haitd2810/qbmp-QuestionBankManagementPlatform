@@ -1,30 +1,43 @@
+// lib/axios.ts
 import axios from "axios";
+import Cookies from "js-cookie";
+import { GetServerSidePropsContext } from "next";
 
-let accessToken: string | null = null;
+export const getApiClient = (ctx?: GetServerSidePropsContext) => {
+  const axiosInstance = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_BACKEND_HOST,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-export const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_HOST,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+  axiosInstance.interceptors.request.use((config) => {
+    let token;
 
-axiosInstance.interceptors.request.use((config) => {
-  accessToken = localStorage.getItem("token");
-  config.headers.Authorization = `Bearer ${accessToken}`;
-  return config;
-});
-
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const backendError = error.response?.data;
-    if (error.response?.status === 401) {
-      localStorage.removeItem("token")
-      setTimeout(() => {
-        window.location.href = "/home";
-      }, 2000);
+    if (typeof window !== "undefined") {
+      token = Cookies.get("token");
+    } else if (ctx?.req) {
+      token = ctx.req.cookies["token"];
     }
-    return Promise.reject(backendError || error);
-  }
-);
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
+
+  axiosInstance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      const backendError = error.response?.data;
+      if (error.response?.status === 401) {
+        setTimeout(() => {
+          window.location.href = "/home";
+        }, 2000);
+      }
+      return Promise.reject(backendError || error);
+    },
+  );
+
+  return axiosInstance;
+};

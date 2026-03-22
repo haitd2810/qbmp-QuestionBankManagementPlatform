@@ -6,7 +6,7 @@ import GoogleLogo from "@/assets/GoogleLogo.png";
 import styles from "../LandingPage.module.css";
 import Image from "next/image";
 import ModalLoginGoole from "../ModalLoginGoogle";
-import { useLoginAction, useLoginState } from "../../../../context/LoginContext/LoginProvider";
+import { useLoginAction, useLoginState } from "../../../../context/LoginContext";
 
 function Header() {
   const { handleShowLoginModal } = useLoginAction();

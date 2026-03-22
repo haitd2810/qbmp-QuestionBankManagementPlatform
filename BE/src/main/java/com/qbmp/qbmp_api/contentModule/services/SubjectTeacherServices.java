@@ -17,7 +17,7 @@ import java.util.Optional;
 public class SubjectTeacherServices {
     private final ISubjectTeacherRepository subjectTeacherRepository;
 
-    public SubjectTeacherResponse findSubjectOfTeacher(){
+    public List<SubjectResponse> findSubjectOfTeacher(){
         Users currentUser = (Users) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 
@@ -28,13 +28,10 @@ public class SubjectTeacherServices {
                         .subjectId(subject.getSubjects().getSubjectId())
                         .subjectName(subject.getSubjects().getSubjectName())
                         .subjectCode(subject.getSubjects().getSubjectCode())
-                        .description(subject.getSubjects().getDescription()).build()
+                        .description(subject.getSubjects().getDescription())
+                        .role(subject.isSubjectLeader() ? "leader" : "teacher").build()
                 ).toList();
 
-        SubjectTeacherResponse result = SubjectTeacherResponse.builder()
-                                                .subjects(subjectsResult)
-                                                .build();
-
-        return result;
+        return subjectsResult;
     }
 }

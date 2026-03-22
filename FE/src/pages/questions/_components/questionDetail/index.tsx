@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import { Question } from "../../type";
+import { Question } from "../../../../context/QuestionContext/type";
 import styles from "./styles.module.css";
 import clsx from "clsx";
 import { useQuestionData } from "@/context/QuestionContext";
