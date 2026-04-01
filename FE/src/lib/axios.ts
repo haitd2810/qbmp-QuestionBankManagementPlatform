@@ -29,13 +29,7 @@ export const getApiClient = (ctx?: GetServerSidePropsContext) => {
   axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
-      const backendError = error.response?.data;
-      if (error.response?.status === 401) {
-        setTimeout(() => {
-          window.location.href = "/home";
-        }, 2000);
-      }
-      return Promise.reject(backendError || error);
+      return Promise.reject(error);
     },
   );
 
