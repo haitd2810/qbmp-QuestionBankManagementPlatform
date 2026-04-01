@@ -70,14 +70,14 @@ export default function TeacherLayouts({
           getRolesData(),
         ]);
 
-        const subjectsData = subjectsRes.data.subjects.map((item: Subject) => ({
+        const subjectsData = subjectsRes.data.map((item: Subject) => ({
           id: item.subjectId,
           label: item.subjectCode,
         }));
         setSubjects(subjectsData);
         if (subjectsData.length > 0) setSelectedSubject(subjectsData[0]);
 
-        const rolesData = rolesRes.data.roles.map((item: Role) => {
+        const rolesData = rolesRes.data.map((item: Role) => {
           const roleKey = item.roleName.toLowerCase();
 
           const config = ROLE_CONFIG[roleKey] || ROLE_CONFIG["default"];
