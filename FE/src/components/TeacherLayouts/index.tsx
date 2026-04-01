@@ -40,11 +40,7 @@ const TempData = [
   {
     id: "",
     label: "",
-  },
-  {
-    id: "",
-    label: "",
-  },
+  }
 ];
 
 export default function TeacherLayouts({
@@ -56,9 +52,10 @@ export default function TeacherLayouts({
   const router = useRouter();
   const [roles, setRoles] = useState(TempData);
   const [roleSelected, setRoleSelected] = useState<DropdownOption>(TempData[0]);
-  const [selectedSubject, setSelectedSubject] = useState(TempData[0]);
+  const [selectedSubject, setSelectedSubject] = useState<DropdownOption>(TempData[0]);
   const [subjects, setSubjects] = useState(TempData);
   const [ isLoading, setIsLoading ] = useState(false);
+  const subjectId = router.query.subjectId;
 
   useEffect(() => {
     const loadAllData = async () => {
@@ -75,7 +72,14 @@ export default function TeacherLayouts({
           label: item.subjectCode,
         }));
         setSubjects(subjectsData);
-        if (subjectsData.length > 0) setSelectedSubject(subjectsData[0]);
+        if (subjectsData.length > 0){
+          const foundSubject = subjectsData.find((item : DropdownOption) => (
+            String(item.label.toLowerCase()) == String(subjectId?.toLocaleString().toLowerCase())
+          ))
+          if(foundSubject){
+            setSelectedSubject(foundSubject);
+          }
+        }
 
         const rolesData = rolesRes.data.map((item: Role) => {
           const roleKey = item.roleName.toLowerCase();
@@ -101,6 +105,11 @@ export default function TeacherLayouts({
 
     loadAllData();
   }, []);
+  
+  const handleSelectSubject = (item: DropdownOption) => {
+    setSelectedSubject(item);
+    router.push(`/${item.label}/questions`);
+  }
   return (
     <div className={styles.dashboardContainer}>
       <aside
@@ -143,7 +152,7 @@ export default function TeacherLayouts({
             <Dropdown
               options={subjects}
               selected={selectedSubject}
-              onSelect={(opt) => setSelectedSubject(opt)}
+              onSelect={(opt) => handleSelectSubject(opt)}
               collapsed={collapsed}
               className={styles.dropdownRoles}
               isLoading={isLoading}
