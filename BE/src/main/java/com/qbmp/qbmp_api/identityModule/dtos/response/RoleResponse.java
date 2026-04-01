@@ -1,4 +1,4 @@
-package com.qbmp.qbmp_api.userModule.dto.response;
+package com.qbmp.qbmp_api.identityModule.dtos.response;
 
 import lombok.Builder;
 import lombok.Data;

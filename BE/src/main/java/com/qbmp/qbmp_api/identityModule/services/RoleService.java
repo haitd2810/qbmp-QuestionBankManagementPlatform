@@ -1,19 +1,13 @@
-package com.qbmp.qbmp_api.userModule.service;
+package com.qbmp.qbmp_api.identityModule.services;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseToken;
-import com.qbmp.qbmp_api.common.exception.AppException;
-import com.qbmp.qbmp_api.common.message.ErrorMessage;
 import com.qbmp.qbmp_api.entity.Role;
 import com.qbmp.qbmp_api.entity.Users;
-import com.qbmp.qbmp_api.userModule.dto.response.RoleListResponse;
-import com.qbmp.qbmp_api.userModule.dto.response.RoleResponse;
-import com.qbmp.qbmp_api.userModule.repository.IRoleRepository;
+import com.qbmp.qbmp_api.identityModule.dtos.response.RoleResponse;
+import com.qbmp.qbmp_api.identityModule.repositories.IRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +20,7 @@ public class RoleService {
         return roleRepository.findByRoleName(roleName);
     }
 
-    public RoleListResponse getAvailableRoles(){
+    public List<RoleResponse> getAvailableRoles(){
         Users currentUser = (Users) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 
@@ -39,8 +33,6 @@ public class RoleService {
                         .build())
                 .toList();
 
-        return RoleListResponse.builder()
-                .roles(roleResponse)
-                .build();
+        return roleResponse;
     }
 }

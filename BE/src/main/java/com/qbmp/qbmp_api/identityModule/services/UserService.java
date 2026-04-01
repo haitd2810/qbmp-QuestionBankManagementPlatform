@@ -1,9 +1,8 @@
-package com.qbmp.qbmp_api.userModule.service;
+package com.qbmp.qbmp_api.identityModule.services;
 
 import com.google.firebase.auth.FirebaseToken;
-import com.qbmp.qbmp_api.authModule.dto.response.AuthResponse;
 import com.qbmp.qbmp_api.entity.Users;
-import com.qbmp.qbmp_api.userModule.repository.IUserRepository;
+import com.qbmp.qbmp_api.identityModule.repositories.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

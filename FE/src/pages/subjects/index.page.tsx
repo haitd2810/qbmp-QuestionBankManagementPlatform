@@ -1,42 +1,24 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import SubjectCard from "./_components/subjectCard";
 import Layout from "@/components/layouts";
 import styles from "./styles.module.css";
 import clsx from "clsx";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { getSubjectsData } from "@/api/subjects.api";
+import { getRolesData } from "@/api/roles.api";
 
-export default function Subject() {
-  const data = [
-    {
-      code: "Math",
-      name: "Toán học",
-      description: "Mô tả môn học....",
-      role: "Giáo viên",
-    },
-    {
-      code: "Math",
-      name: "Toán học",
-      description: "Mô tả môn học....",
-      role: "Giáo viên",
-    },
-    {
-      code: "Math",
-      name: "Toán học",
-      description: "Mô tả môn học....",
-      role: "Giáo viên",
-    },
-    {
-      code: "Math",
-      name: "Toán học",
-      description: "Mô tả môn học....",
-      role: "Giáo viên",
-    },
-    {
-      code: "Math",
-      name: "Toán học",
-      description: "Mô tả môn học....",
-      role: "Giáo viên",
-    },
-  ];
+type Subject = {
+  subjectId: string;
+  subjectName: string;
+  subjectCode: string;
+  description: string;
+  role: string;
+};
+
+export default function Subject({
+  dataRoles,
+  dataSubjects,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className={styles.subjectContainer}>
       <div className={styles.pageTitleContainer}>
@@ -58,8 +40,10 @@ export default function Subject() {
           styles.subectList,
         )}
       >
-        {data.length !== 0 &&
-          data.map((item) => <SubjectCard subject={item} key={item.code} />)}
+        {dataSubjects.length !== 0 &&
+          dataSubjects.map((item: Subject) => (
+            <SubjectCard subject={item} key={item.subjectCode} />
+          ))}
       </div>
     </div>
   );
@@ -67,4 +51,17 @@ export default function Subject() {
 
 Subject.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const [subjectsRes, rolesRes] = await Promise.all([
+    getSubjectsData(context),
+    getRolesData(context),
+  ]);
+  return {
+    props: {
+      dataRoles: rolesRes.data,
+      dataSubjects: subjectsRes.data,
+    },
+  };
 };

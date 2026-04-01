@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import styles from "./styles.module.css";
-import { Question } from "../../type";
+import { Question } from "../../../../context/QuestionContext/type";
 import { useQuestionAction, useQuestionData } from "@/context/QuestionContext";
 import SearchQuestion from "../searchQuestion";
 import QuestionItem from "../questionItem";

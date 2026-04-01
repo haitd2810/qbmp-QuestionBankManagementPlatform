@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useLoginAction } from "../../../../context/LoginContext/LoginProvider";
+import { useLoginAction } from "../../../../context/LoginContext";
 import  SQBMSLogo from "@/assets/logo.png";
 import GoogleLogo from "@/assets/GoogleLogo.png"
 import styles from "../LandingPage.module.css"

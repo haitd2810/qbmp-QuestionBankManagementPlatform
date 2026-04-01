@@ -1,5 +1,5 @@
 import { useQuestionAction, useQuestionData } from "@/context/QuestionContext";
-import { Question } from "../../type";
+import { Question } from "../../../../context/QuestionContext/type";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 
