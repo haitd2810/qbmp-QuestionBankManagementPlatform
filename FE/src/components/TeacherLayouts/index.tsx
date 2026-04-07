@@ -40,11 +40,7 @@ const TempData = [
   {
     id: "",
     label: "",
-  },
-  {
-    id: "",
-    label: "",
-  },
+  }
 ];
 
 export default function TeacherLayouts({
@@ -56,9 +52,10 @@ export default function TeacherLayouts({
   const router = useRouter();
   const [roles, setRoles] = useState(TempData);
   const [roleSelected, setRoleSelected] = useState<DropdownOption>(TempData[0]);
-  const [selectedSubject, setSelectedSubject] = useState(TempData[0]);
+  const [selectedSubject, setSelectedSubject] = useState<DropdownOption>(TempData[0]);
   const [subjects, setSubjects] = useState(TempData);
   const [ isLoading, setIsLoading ] = useState(false);
+  const subjectId = router.query.subjectId;
 
   useEffect(() => {
     const loadAllData = async () => {
@@ -75,7 +72,14 @@ export default function TeacherLayouts({
           label: item.subjectCode,
         }));
         setSubjects(subjectsData);
-        if (subjectsData.length > 0) setSelectedSubject(subjectsData[0]);
+        if (subjectsData.length > 0){
+          const foundSubject = subjectsData.find((item : DropdownOption) => (
+            String(item.label.toLowerCase()) == String(subjectId?.toLocaleString().toLowerCase())
+          ))
+          if(foundSubject){
+            setSelectedSubject(foundSubject);
+          }
+        }
 
         const rolesData = rolesRes.data.map((item: Role) => {
           const roleKey = item.roleName.toLowerCase();
@@ -89,7 +93,14 @@ export default function TeacherLayouts({
           };
         });
         setRoles(rolesData);
-        if (rolesData.length > 0) setRoleSelected(rolesData[0]);
+        if (rolesData.length > 0){
+          const foundedRole = rolesData.find((item: DropdownOption) => (
+            String(item.label.toLowerCase()) === "teacher"
+          ))
+          if(foundedRole){
+             setRoleSelected(foundedRole);
+          }
+        }
       } catch (error: any) {
         const message = error?.message || (typeof error === "object" && error?.message) || "Something went wrong";
         toast.error(`Error: ${message}`);
@@ -101,6 +112,11 @@ export default function TeacherLayouts({
 
     loadAllData();
   }, []);
+  
+  const handleSelectSubject = (item: DropdownOption) => {
+    setSelectedSubject(item);
+    router.push(`/${item.label}/questions`);
+  }
   return (
     <div className={styles.dashboardContainer}>
       <aside
@@ -143,7 +159,7 @@ export default function TeacherLayouts({
             <Dropdown
               options={subjects}
               selected={selectedSubject}
-              onSelect={(opt) => setSelectedSubject(opt)}
+              onSelect={(opt) => handleSelectSubject(opt)}
               collapsed={collapsed}
               className={styles.dropdownRoles}
               isLoading={isLoading}
@@ -155,9 +171,9 @@ export default function TeacherLayouts({
           <Link
             href="/questions"
             className={clsx(styles.menuItem, {
-              [styles.activeMenu]: router.pathname === "/questions",
+              [styles.activeMenu]: router.pathname.endsWith("/questions"),
             })}
-            title="Dashboard"
+            title="Question"
           >
             {collapsed && (
               <svg
@@ -181,7 +197,7 @@ export default function TeacherLayouts({
             className={clsx(styles.menuItem, {
               [styles.activeMenu]: router.pathname === "/questionsets",
             })}
-            title="Account"
+            title="Question Set"
           >
             {collapsed && (
               <svg
@@ -203,7 +219,7 @@ export default function TeacherLayouts({
             className={clsx(styles.menuItem, {
               [styles.activeMenu]: router.pathname === "/books",
             })}
-            title="Department"
+            title="Book"
           >
             {collapsed && (
               <svg
@@ -226,7 +242,7 @@ export default function TeacherLayouts({
             className={clsx(styles.menuItem, {
               [styles.activeMenu]: router.pathname === "/requests",
             })}
-            title="Module AI"
+            title="Requests"
           >
             {collapsed && (
               <svg
@@ -248,7 +264,7 @@ export default function TeacherLayouts({
             className={clsx(styles.menuItem, {
               [styles.activeMenu]: router.pathname === "/tasks",
             })}
-            title="Change Password"
+            title="Tasks"
           >
             {collapsed && (
               <svg
@@ -271,7 +287,7 @@ export default function TeacherLayouts({
             className={clsx(styles.menuItem, {
               [styles.activeMenu]: router.pathname === "/trash",
             })}
-            title="Change Password"
+            title="Trash"
           >
             {collapsed && (
               <svg

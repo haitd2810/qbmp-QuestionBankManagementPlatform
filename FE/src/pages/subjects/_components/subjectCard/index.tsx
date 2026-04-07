@@ -13,13 +13,13 @@ export default function SubjectCard(props : Props) {
 
   const router = useRouter();
 
-  const handleRedirect = () => {
-    router.push('/questions');
+  const handleRedirect = (item: string) => {
+    router.push(`${item}/questions`);
   }
   return (
     <article
       className={styles.cardSubject}
-      onClick={() => handleRedirect()}
+      onClick={() => handleRedirect(subject.subjectCode)}
       key={key}
     >
       <div className={styles.cardContent}>
