@@ -49,6 +49,12 @@ export function LoginProvider({ children }: { children: ReactNode }) {
 
       const response = await login();
       toast.success("Login success, welcome " + response.data.fullName);
+      switch(response.data.role.toLowerCase()){
+        case 'admin':
+          window.location.href = '/admin';
+        default:
+          window.location.href = '/subjects'
+      }
       return response;
     } catch (error: unknown) {
       if (error instanceof Error) {
